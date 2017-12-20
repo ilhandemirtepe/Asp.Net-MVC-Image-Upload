@@ -1,0 +1,42 @@
+﻿@{
+    ViewBag.Title = "AddOrEditNews";
+}
+
+@model Mvc_App.Models.News
+<div class="col-md-4">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Haber Ekle/Güncelle
+        </div>
+        <div class="panel-body">
+            <form method="post" enctype="multipart/form-data" action="/Home/AddOrEditNews">
+                <input type="hidden" name="uid" value="@Model.Id" />
+
+                <div class="form-group">
+                    <label for="Title">Haber Başlık:</label>
+                    <input type="text" class="form-control" name="Title" value="@Model.Title">
+                </div>
+                <div class="form-group">
+                    <label for="ImageUrl">Haber Resim:</label>
+                    <input type="file"  name="ImageUrl"  value="@Model.ImageUrl" />
+                    
+
+                </div>
+                @if (Model.Id == 0) //güncelle kısmı
+                {
+                    <button type="submit" class="btn btn-success">Kaydet</button>
+
+                }
+                else
+                {
+                    <p class="bg-warning">Eski resim: @Model.ImageUrl.Substring(20, 39)</p>
+                    <button type="submit" class="btn btn-warning">Düzenle</button>
+                }
+                
+
+            </form>
+
+
+        </div>
+    </div>
+</div>
